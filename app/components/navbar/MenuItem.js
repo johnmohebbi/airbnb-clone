@@ -5,10 +5,12 @@ export default function MenuItem({ onClick, label }) {
       className="
             px-4
             py-3
-            hover:bg-neutral-100
+            hover:border-r-2
+            border-rose-500
+            hover:bg-neutral-100/50
             transition
             font-semibold
     "
-    >{label}</div>
+    onClick={onClick} >{label}</div>
   );
 }

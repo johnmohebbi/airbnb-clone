@@ -21,12 +21,11 @@ const Modal = function ({
     setShowModal(false);
     setTimeout(() => {
       onClose();
-    }, 400);
+    }, 300);
   }, [disabled, onClose]);
 
   const handleSubmit = useCallback(() => {
     if (disabled) return;
-    setShowModal(false);
     onSubmit();
   }, [disabled, onSubmit]);
 
@@ -49,17 +48,17 @@ const Modal = function ({
   return (
     <div
       className="
-            justify-center 
-            items-center 
-            flex 
-            overflow-x-hidden 
-            overflow-y-auto 
-            fixed 
-            inset-0 
-            z-50 
-            outline-none 
-            focus:outline-none
-            bg-neutral-800/70
+          justify-center 
+          items-center 
+          flex 
+          overflow-x-hidden 
+          overflow-y-auto 
+          fixed 
+          inset-0 
+          z-50 
+          outline-none 
+          focus:outline-none
+          bg-neutral-800/70
             "
     >
       <div
@@ -80,7 +79,7 @@ const Modal = function ({
         <div
           className={`
             translate
-            duration-[400]
+            duration-300
             h-full
             ${showModal ? "translate-y-0" : "translate-y-full"}
             ${showModal ? "opacity-100" : "opacity-0"}
@@ -133,7 +132,7 @@ const Modal = function ({
             </div>
             {/* modal body */}
             <div className="relative p-6 flex-auto">{body}</div>
-            {/* modal body */}
+            {/* modal footer */}
             <div className="flex flex-col gap-2 p-6">
               <div
                 className="
@@ -144,7 +143,18 @@ const Modal = function ({
                     w-full
                   "
               >
-                <Button small label="my button" />
+                {secondaryAction && secondaryActionLabel && (
+                  <Button
+                    disabled={disabled}
+                    label={secondaryActionLabel}
+                    onClick={handleSecondaryAction}
+                  />
+                )}
+                <Button
+                  disabled={disabled}
+                  label={actionLabel}
+                  onClick={handleSubmit}
+                />
               </div>
             </div>
           </div>
