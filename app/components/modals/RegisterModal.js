@@ -1,15 +1,17 @@
 "use client";
 import { useForm } from "react-hook-form";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-//icons
-import { AiFillGithub } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
+//components
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import Button from "../Button";
 import axios from "axios";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import { toast } from "react-hot-toast";
+//icons
+import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -34,10 +36,11 @@ const RegisterModal = () => {
         console.log(response);
         toast.success("success");
         registerModal.onClose();
+        registerModal.ResetregisterInputsValue();
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.message);
+        registerModal.ResetregisterInputsValue();
       })
       .finally(() => setIsLoading(false));
   };
@@ -45,6 +48,7 @@ const RegisterModal = () => {
     <div className="flex flex-col gap-4">
       <Heading title={"welcom to airbnb"} subtitle={"create an acount"} />
       <Input
+      value={registerModal.registerInputsValue.name}
         id="name"
         disabled={isLoading}
         register={register}
@@ -53,6 +57,7 @@ const RegisterModal = () => {
         required
       />
       <Input
+      value={registerModal.registerInputsValue.email}
         id="email"
         disabled={isLoading}
         register={register}
@@ -62,6 +67,7 @@ const RegisterModal = () => {
         type="email"
       />
       <Input
+      value={registerModal.registerInputsValue.password}
         id="password"
         disabled={isLoading}
         register={register}
@@ -70,6 +76,43 @@ const RegisterModal = () => {
         required
         type="password"
       />
+    </div>
+  );
+  const footerContent = (
+    <div className="flex flex-col gap-4 mt-3">
+      <hr />
+      <Button
+        outline
+        label={"Continue with Google"}
+        icon={FcGoogle}
+        onClick={() => {}}
+      />
+      <Button
+        outline
+        label={"Continue with Github"}
+        icon={AiFillGithub}
+        onClick={() => {}}
+      />
+      <div
+        className="
+        text-neutral-500
+        text-center
+        mt-4
+        font-light
+        "
+      >
+        <div className="flex justify-center flex-row items-center gap-4">
+          <div className="cursor-pointer hover:text-neutral-800">
+            I&apos;ve had an account
+          </div>
+          <div
+            onClick={registerModal.onClose}
+            className="cursor-pointer text-neutral-800 hover:underline underline-offset-4"
+          >
+            Log in
+          </div>
+        </div>
+      </div>
     </div>
   );
   return (
@@ -82,6 +125,7 @@ const RegisterModal = () => {
         onClose={registerModal.onClose}
         onSubmit={handleSubmit(onSubmit)}
         body={bodyContent}
+        footer={footerContent}
       />
     </>
   );

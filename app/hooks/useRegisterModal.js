@@ -14,5 +14,14 @@ const useRegisterModal = create((set) => ({
       ...state,
       registerInputsValue: { ...state.registerInputsValue, [inputId]: inputV },
     })),
+  ResetregisterInputsValue: () =>
+    set((state) => ({
+      ...state,
+      registerInputsValue: {
+        name: "",
+        email: "",
+        password: "",
+      },
+    })),
 }));
 export default useRegisterModal;

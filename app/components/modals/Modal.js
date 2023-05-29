@@ -156,6 +156,7 @@ const Modal = function ({
                   onClick={handleSubmit}
                 />
               </div>
+              {footer}
             </div>
           </div>
         </div>
