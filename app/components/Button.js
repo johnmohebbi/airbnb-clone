@@ -1,7 +1,7 @@
 "use client";
 export default function Button({
   label,
-  onClick,
+  // onClick,
   disabled,
   outline,
   small,
@@ -10,7 +10,7 @@ export default function Button({
   return (
     <button
       disabled={disabled}
-      onClick={onClick}
+      type={'submit'}
       className={`
         relative
         disabled:opacity-70

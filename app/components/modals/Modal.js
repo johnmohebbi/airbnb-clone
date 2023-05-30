@@ -13,6 +13,7 @@ const Modal = function ({
   disabled,
   secondaryAction,
   secondaryActionLabel,
+  typebtn
 }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -25,7 +26,9 @@ const Modal = function ({
   }, [disabled, onClose]);
 
   const handleSubmit = useCallback(() => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
     onSubmit();
   }, [disabled, onSubmit]);
 
@@ -153,7 +156,7 @@ const Modal = function ({
                 <Button
                   disabled={disabled}
                   label={actionLabel}
-                  onClick={handleSubmit}
+                  typebtn={'submit'}
                 />
               </div>
               {footer}

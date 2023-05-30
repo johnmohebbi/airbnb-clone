@@ -22,11 +22,11 @@ const Input = ({
         <BiDollar size={24} className="text-neutral-700 absolute t-5 left-2" />
       )}
       <input
-      value={value}
+        value={value}
         type={type}
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
+        {...register(id, { required: true })}
         placeholder=" "
         className={`
             peer
@@ -75,4 +75,4 @@ const Input = ({
     </div>
   );
 };
-export default memo(Input);
+export default Input;

@@ -10,7 +10,7 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 const handler = NextAuth({
-  adapter: PrismaAdapter(client),
+  adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID,
@@ -22,7 +22,7 @@ const handler = NextAuth({
     }),
 
     CredentialsProvider({
-      name: "credentials2023",
+      name: "credentials",
       credentials: {
         email: { label: "email", type: "email",placeholder:"please enter your email." },
         password: { label: "password", type: "password" },
