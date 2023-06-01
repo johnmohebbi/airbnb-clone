@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Avatar() {
+export default function Avatar({ src }) {
   return (
     <>
       <Image
@@ -10,7 +10,7 @@ export default function Avatar() {
         alt="Avatar"
         width={25}
         height={25}
-        src={"/images/Placeholder.jpg"}
+        src={src || "/images/Placeholder.jpg"}
       />
     </>
   );

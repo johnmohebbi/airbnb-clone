@@ -15,8 +15,10 @@ import { toast } from "react-hot-toast";
 //icons
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
 const LoginModal = () => {
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
@@ -32,22 +34,27 @@ const LoginModal = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log("data=>", data);
-    // setIsLoading(true);
-    // signIn("credentials", {
-    //   data,
-    //   redirect: false,
-    // })
-    // .then((response) => {
-    //   if (response?.ok) {
-    //     setIsLoading(false);
-    //     toast.success("Logged in");
-    //     loginModal.onClose();
-    //   }
-    // })
-    //   .catch((error) => console.log(error));
+    setIsLoading(true);
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.error) {
+          setIsLoading(false);
+          toast.success("Logged in");
+          loginModal.onClose();
+          loginModal.ResetLoginInputsValue();
+          router.refresh();
+        }
+        if (response.error) {
+          toast.error(response.error);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => console.log(error));
   };
-  console.log(errors);
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title={"welcom back"} subtitle={"login to your acount"} />
@@ -121,7 +128,7 @@ const LoginModal = () => {
           actionLabel="sign in"
           title="Login"
           onClose={loginModal.onClose}
-          typebtn={handleSubmit(onSubmit)}
+          typebtn={"submit"}
           body={bodyContent}
           footer={footerContent}
         />

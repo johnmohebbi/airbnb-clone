@@ -5,8 +5,9 @@ import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
 
-export default function UserMenu() {
+export default function UserMenu({ currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
@@ -53,7 +54,7 @@ export default function UserMenu() {
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -77,10 +78,26 @@ export default function UserMenu() {
           flex flex-col cursor-pointer
           "
           >
-            <>
-              <MenuItem onClick={loginModal.onOpen} label={"login"} />
-              <MenuItem onClick={registerModal.onOpen} label={"sign up"} />
-            </>
+            {currentUser ? (
+              <>
+                <h3 className="pl-4 font-semibold text-lg select-none">
+                  {currentUser?.name}
+                </h3>
+                <div className="bg-neutral-800/50 h-[1px] my-1"></div>
+                <MenuItem onClick={() => {}} label={"my trips"} />
+                <MenuItem onClick={() => {}} label={"my favorites"} />
+                <MenuItem onClick={() => {}} label={"my reservations"} />
+                <MenuItem onClick={() => {}} label={"my properties "} />
+                <MenuItem onClick={() => {}} label={"my home "} />
+                <div className="bg-neutral-800/50 h-[1px] my-1"></div>
+                <MenuItem onClick={() => signOut()} label={"Logout "} />
+              </>
+            ) : (
+              <>
+                <MenuItem onClick={loginModal.onOpen} label={"login"} />
+                <MenuItem onClick={registerModal.onOpen} label={"sign up"} />
+              </>
+            )}
           </div>
         </div>
       )}

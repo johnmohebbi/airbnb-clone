@@ -8,8 +8,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
-
-const handler = NextAuth({
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
@@ -24,7 +23,11 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "email", type: "email",placeholder:"please enter your email." },
+        email: {
+          label: "email",
+          type: "email",
+          placeholder: "please enter your email.",
+        },
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
@@ -56,6 +59,7 @@ const handler = NextAuth({
   debug: process.env.NODE_ENV === "development",
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

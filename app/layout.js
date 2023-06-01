@@ -7,20 +7,22 @@ import ToasterProvider from "./components/providers/ToasterProvider";
 //css
 import "./globals.css";
 import LoginModal from "./components/modals/LoginModal";
+import { getCurrentUser } from "./actions/getCurrentUser";
 
 export const metadata = {
   title: "Airbnb",
   description: "airbnb clone",
 };
 const font = Nunito({ subsets: ["latin"] });
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
         <LoginModal />
         <RegisterModal />
-        <Navvbar />
+        <Navvbar currentUser={currentUser} />
         {children}
       </body>
     </html>

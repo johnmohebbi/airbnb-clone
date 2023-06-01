@@ -1,16 +1,23 @@
 "use client";
 export default function Button({
   label,
-  // onClick,
+  onClick,
   disabled,
   outline,
   small,
   icon: Icon,
+  typebtn,
 }) {
   return (
     <button
+      onClick={() => {
+        if (typebtn === "button") {
+          return onClick();
+        }
+        return;
+      }}
       disabled={disabled}
-      type={'submit'}
+      type={typebtn === "submit" ? typebtn : "button"}
       className={`
         relative
         disabled:opacity-70

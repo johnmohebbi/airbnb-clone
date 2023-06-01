@@ -13,7 +13,7 @@ const Modal = function ({
   disabled,
   secondaryAction,
   secondaryActionLabel,
-  typebtn
+  typebtn,
 }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -153,10 +153,11 @@ const Modal = function ({
                     onClick={handleSecondaryAction}
                   />
                 )}
+
                 <Button
                   disabled={disabled}
                   label={actionLabel}
-                  typebtn={'submit'}
+                  typebtn={typebtn}
                 />
               </div>
               {footer}

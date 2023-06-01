@@ -12,6 +12,7 @@ import { toast } from "react-hot-toast";
 //icons
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
+import { signIn, signOut } from "next-auth/react";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -48,7 +49,7 @@ const RegisterModal = () => {
     <div className="flex flex-col gap-4">
       <Heading title={"welcom to airbnb"} subtitle={"create an acount"} />
       <Input
-      value={registerModal.registerInputsValue.name}
+        value={registerModal.registerInputsValue.name}
         id="name"
         disabled={isLoading}
         register={register}
@@ -57,7 +58,7 @@ const RegisterModal = () => {
         required
       />
       <Input
-      value={registerModal.registerInputsValue.email}
+        value={registerModal.registerInputsValue.email}
         id="email"
         disabled={isLoading}
         register={register}
@@ -67,7 +68,7 @@ const RegisterModal = () => {
         type="email"
       />
       <Input
-      value={registerModal.registerInputsValue.password}
+        value={registerModal.registerInputsValue.password}
         id="password"
         disabled={isLoading}
         register={register}
@@ -91,7 +92,8 @@ const RegisterModal = () => {
         outline
         label={"Continue with Github"}
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn('github')}
+        typebtn={"button"}
       />
       <div
         className="
@@ -117,16 +119,18 @@ const RegisterModal = () => {
   );
   return (
     <>
-      <Modal
-        disabled={isLoading}
-        isOpen={registerModal.isOpen}
-        actionLabel="Continue"
-        title="Register"
-        onClose={registerModal.onClose}
-        onSubmit={handleSubmit(onSubmit)}
-        body={bodyContent}
-        footer={footerContent}
-      />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Modal
+          disabled={isLoading}
+          isOpen={registerModal.isOpen}
+          actionLabel="Continue"
+          title="Register"
+          onClose={registerModal.onClose}
+          body={bodyContent}
+          footer={footerContent}
+          typebtn="submit"
+        />
+      </form>
     </>
   );
 };
