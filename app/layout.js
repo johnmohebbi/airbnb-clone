@@ -18,6 +18,9 @@ export default async function RootLayout({ children }) {
   const currentUser = await getCurrentUser();
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body className={font.className}>
         <ToasterProvider />
         <LoginModal />
