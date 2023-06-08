@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 
 import bycrypt from "bcrypt";
 export async function POST(request) {
-  const url = process.env.MONGODB_URI;
   const body = await request.json();
   const { name, email, password } = body;
   const hashedPassword = await bycrypt.hash(password, 12);

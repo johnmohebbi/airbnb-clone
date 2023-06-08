@@ -10,9 +10,9 @@ export default function Button({
 }) {
   return (
     <button
-      onClick={() => {
+      onClick={ () => {
         if (typebtn === "button") {
-          return onClick();
+           onClick();
         }
         return;
       }}

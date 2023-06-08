@@ -4,8 +4,8 @@ import Container from "../Container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
+import Categories from "./Categories";
 export default function Navvbar({ currentUser }) {
-  
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -23,6 +23,7 @@ export default function Navvbar({ currentUser }) {
             <Search />
             <UserMenu currentUser={currentUser} />
           </div>
+          <Categories />
         </Container>
       </div>
     </div>
