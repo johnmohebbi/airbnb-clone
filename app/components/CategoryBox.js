@@ -1,8 +1,36 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import qs from "query-string";
 const CategoryBox = ({ label, icon: Icon, selected }) => {
+  const router = useRouter();
+  const params = useSearchParams();
+  const clickHandler = () => {
+    let currentQuery = {};
+    if (params.toString()) {
+      currentQuery = qs.parse(params.toString());
+    }
+    const updateQuery = {
+      ...currentQuery,
+      category: label,
+    };
+
+    if (params?.get("category") === label) {
+      Reflect.deleteProperty(updateQuery, "category");
+    }
+
+    const url = qs.stringifyUrl(
+      {
+        url: "/",
+        query: updateQuery,
+      },
+      { skipNull: true }
+    );
+    router.push(url);
+  };
   return (
     <div
+      onClick={clickHandler}
       className={`
     flex 
     flex-col 
@@ -18,10 +46,8 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
     ${selected ? "text-neutral-800" : "text-neutral-500"}
   `}
     >
-        <Icon size={26} />
-        <div className="font-normal text-sm">
-            {label}
-        </div>
+      <Icon size={26} />
+      <div className="font-normal text-sm">{label}</div>
     </div>
   );
 };
