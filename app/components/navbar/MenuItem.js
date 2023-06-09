@@ -3,6 +3,7 @@ export default function MenuItem({ onClick, label }) {
   return (
     <div
       className="
+      menu
             px-4
             py-3
             hover:border-r-2

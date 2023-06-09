@@ -2,10 +2,11 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
+import { memo, useCallback } from "react";
 const CategoryBox = ({ label, icon: Icon, selected }) => {
   const router = useRouter();
   const params = useSearchParams();
-  const clickHandler = () => {
+  const clickHandler = useCallback(() => {
     let currentQuery = {};
     if (params.toString()) {
       currentQuery = qs.parse(params.toString());
@@ -27,7 +28,7 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
       { skipNull: true }
     );
     router.push(url);
-  };
+  }, [params, label, router]);
   return (
     <div
       onClick={clickHandler}
@@ -42,7 +43,7 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
     hover:text-neutral-800
     transition
     cursor-pointer
-    ${selected ? "border-b-neutral-800" : "border-transparent"}
+    ${selected ? "border-b-neutral-800 " : "border-transparent"}
     ${selected ? "text-neutral-800" : "text-neutral-500"}
   `}
     >
@@ -52,4 +53,4 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
   );
 };
 
-export default CategoryBox;
+export default memo(CategoryBox);

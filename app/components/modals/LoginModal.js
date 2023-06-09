@@ -1,7 +1,7 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 //components
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -19,8 +19,10 @@ import { useRouter } from "next/navigation";
 
 const LoginModal = () => {
   const router = useRouter();
+
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -55,6 +57,10 @@ const LoginModal = () => {
       })
       .catch((error) => console.log(error));
   };
+  const modalHandle = useCallback(() => {
+    registerModal.onOpen();
+    loginModal.onClose();
+  }, [registerModal, loginModal]);
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title={"welcom back"} subtitle={"login to your acount"} />
@@ -115,13 +121,13 @@ const LoginModal = () => {
       >
         <div className="flex justify-center flex-row items-center gap-4">
           <div className="cursor-pointer hover:text-neutral-800">
-            I&apos;ve had an account
+            I don&apos;n have an account
           </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={modalHandle}
             className="cursor-pointer text-neutral-800 hover:underline underline-offset-4"
           >
-            Log in
+            create account
           </div>
         </div>
       </div>

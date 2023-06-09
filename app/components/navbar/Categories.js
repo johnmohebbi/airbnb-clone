@@ -56,7 +56,7 @@ export const categories = [
     description: "This property is near a lake!",
   },
   {
-    label: "Skiing",
+    label: "Sking",
     icon: FaSkiing,
     description: "This property has skiing activies!",
   },
@@ -109,6 +109,7 @@ const Categories = () => {
     <Container>
       <div
         className="
+        relative
           pt-4
           flex 
           flex-row 

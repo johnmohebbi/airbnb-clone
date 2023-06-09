@@ -1,6 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 //components
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Button from "../Button";
@@ -13,9 +13,11 @@ import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { signIn, signOut } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -45,6 +47,10 @@ const RegisterModal = () => {
       })
       .finally(() => setIsLoading(false));
   };
+  const modalHandle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [registerModal, loginModal]);
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title={"welcom to airbnb"} subtitle={"create an acount"} />
@@ -86,7 +92,7 @@ const RegisterModal = () => {
         outline
         label={"Continue with Google"}
         icon={FcGoogle}
-        onClick={() => signIn('google')}
+        onClick={() => signIn("google")}
         typebtn={"button"}
       />
       {/* 
@@ -110,7 +116,7 @@ const RegisterModal = () => {
             I&apos;ve had an account
           </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={modalHandle}
             className="cursor-pointer text-neutral-800 hover:underline underline-offset-4"
           >
             Log in

@@ -6,7 +6,7 @@ export default function Avatar({ src }) {
   return (
     <>
       <Image
-        className="rounded-full"
+        className="menu rounded-full"
         alt="Avatar"
         width={25}
         height={25}
