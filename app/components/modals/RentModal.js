@@ -6,6 +6,7 @@ import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { useForm } from "react-hook-form";
+import CountrySelect from "../inputs/CountrySelect";
 
 const steps = {
   CATEGORY: 0,
@@ -96,16 +97,30 @@ export default function RentModal() {
     </div>
   );
 
+  if (step === steps.LOCATION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="where is your place located?"
+          subtitle="help geusts find you"
+        />
+        <CountrySelect
+          
+         />
+      </div>
+    );
+  }
   return (
     <>
       <Modal
         isOpen={rentModal.isOpen}
         onClose={rentModal.onClose}
-        onSubmit={rentModal.onClose}
+        onSubmit={onNext}
         actionLabel={actionLabel}
         secondaryActionLabel={SecondaryactionLabel}
-        secondaryAction={steps === steps.CATEGORY ? undefined : onBack}
+        secondaryAction={step === steps.CATEGORY ? undefined : onBack}
         title={"Airbnb your home!"}
+        typebtn={"button"}
         body={bodyContent}
       />
     </>

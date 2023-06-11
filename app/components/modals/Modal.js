@@ -151,10 +151,13 @@ const Modal = function ({
                     disabled={disabled}
                     label={secondaryActionLabel}
                     onClick={handleSecondaryAction}
+                    typebtn={typebtn}
+                    outline={true}
                   />
                 )}
 
                 <Button
+                  onClick={onSubmit}
                   disabled={disabled}
                   label={actionLabel}
                   typebtn={typebtn}
