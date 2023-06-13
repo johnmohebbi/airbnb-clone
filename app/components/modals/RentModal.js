@@ -7,7 +7,7 @@ import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { useForm } from "react-hook-form";
 import CountrySelect from "../inputs/CountrySelect";
-
+import Map from "../Map";
 const steps = {
   CATEGORY: 0,
   LOCATION: 1,
@@ -41,6 +41,7 @@ export default function RentModal() {
     },
   });
   const category = watch("category");
+  const location = watch("location");
   const setCustomvalue = (id, value) => {
     setValue(id, value, {
       // shouldValidate: true,
@@ -105,8 +106,13 @@ export default function RentModal() {
           subtitle="help geusts find you"
         />
         <CountrySelect
-          
-         />
+          value={location}
+          onChange={(value) => {
+            console.log(value);
+            setCustomvalue("location", value);
+          }}
+        />
+        <Map />
       </div>
     );
   }
