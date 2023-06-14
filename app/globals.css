@@ -6,6 +6,12 @@ html,
 body {
   height: 100%;
 }
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
 
 /* :root {
   --foreground-rgb: 0, 0, 0;
