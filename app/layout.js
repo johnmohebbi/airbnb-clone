@@ -28,7 +28,9 @@ export default async function RootLayout({ children }) {
         <LoginModal />
         <RegisterModal />
         <Navvbar currentUser={currentUser} />
+        <section className="pt-28 pb-20">
         {children}
+        </section>
       </body>
     </html>
   );
