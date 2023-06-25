@@ -6,7 +6,7 @@ export default function Button({
   outline,
   small,
   icon: Icon,
-  typebtn,
+  typebtn = "button",
 }) {
   return (
     <button

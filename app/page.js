@@ -3,13 +3,14 @@ import EmptyState from "./components/EmptyState";
 
 export default function Home() {
   const isEmpty = true;
-  if(isEmpty) {
-    <EmptyState />
+  if (isEmpty) {
+    return <EmptyState showReset  />;
   }
   return (
     <>
-     <Container>
-      <div   className="
+      <Container>
+        <div
+          className="
             pt-24
             grid 
             grid-cols-1 
@@ -20,10 +21,9 @@ export default function Home() {
             2xl:grid-cols-6
             gap-x-4
             gap-y-8
-          ">
-            
-      </div>
-     </Container>
+          "
+        ></div>
+      </Container>
     </>
   );
 }
