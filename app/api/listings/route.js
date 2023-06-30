@@ -20,19 +20,19 @@ export async function POST(request) {
     location,
     price,
   } = body;
-  if (
-    (title,
-    description ||
-      imageSrc ||
-      category ||
-      roomCount ||
-      bathroomCount ||
-      guestCount ||
-      location ||
-      price)
-  ) {
-    return NextResponse.error();
-  }
+  // if (
+  //   title ||
+  //   description ||
+  //   imageSrc ||
+  //   category ||
+  //   roomCount ||
+  //   bathroomCount ||
+  //   guestCount ||
+  //   location ||
+  //   price
+  // ) {
+  //   return NextResponse.error();
+  // }
   const listing = await prisma.listing.create({
     data: {
       title,
