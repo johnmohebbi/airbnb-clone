@@ -4,14 +4,18 @@ import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { PrismaClient } from "@prisma/client";
 
 export async function POST(request, { params }) {
+  const prisma = new PrismaClient();
   const { listingId } = params;
+  console.log("-------------", listingId);
   const currentUser = await getCurrentUser();
+  console.log("-------------", currentUser);
+
   if (!currentUser) {
     return NextResponse.error();
   }
-  if (!listingId || typeof listingId !== "string") {
-    return NextResponse.error();
-  }
+  // if (!listingId || typeof listingId !== "string") {
+  //   return NextResponse.error();
+  // }
   let favoriteIds = [...(currentUser.favoriteIds || [])];
   favoriteIds.push(listingId);
   const user = await prisma.user.update({
@@ -26,6 +30,7 @@ export async function POST(request, { params }) {
   return NextResponse.json({ user });
 }
 export async function DELETE(request, { params }) {
+  const prisma = new PrismaClient();
   const { listingId } = params;
   const currentUser = await getCurrentUser();
   if (!currentUser) {
