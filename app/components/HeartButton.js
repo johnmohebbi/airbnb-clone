@@ -1,9 +1,11 @@
 "use client";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import useFavorite from "../hooks/useFavorite";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const HeartButton = ({ listingId, currentUser }) => {
+  const router = useRouter();
   const { hasFavorited, toggleFavorite } = useFavorite({
     listingId,
     currentUser,
