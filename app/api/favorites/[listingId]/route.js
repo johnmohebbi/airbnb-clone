@@ -6,9 +6,7 @@ import { PrismaClient } from "@prisma/client";
 export async function POST(request, { params }) {
   const prisma = new PrismaClient();
   const { listingId } = params;
-  console.log("-------------", listingId);
   const currentUser = await getCurrentUser();
-  console.log("-------------", currentUser);
 
   if (!currentUser) {
     return NextResponse.error();

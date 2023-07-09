@@ -78,8 +78,8 @@ const ListingCard = ({
             right-3
           "
           >
-            <HeartButton listingId={data.id} currentUser={currentUser} />
-          </div>
+        <HeartButton listingId={data.id} currentUser={currentUser} />
+        </div>
         </div>
         <div className="font-semibold text-lg">
           {location?.region}, {location?.label}
