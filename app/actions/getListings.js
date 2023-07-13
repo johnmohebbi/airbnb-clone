@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 export async function getListings() {
   const prisma = new PrismaClient();
   try {
-    const listings = prisma.listing.findMany({
+    const listings = await prisma.listing.findMany({
       orderBy: {
         createdAt: "desc",
       },
