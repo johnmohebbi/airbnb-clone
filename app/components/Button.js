@@ -10,14 +10,14 @@ export default function Button({
 }) {
   return (
     <button
-      onClick={() => {
+      onClick={(event) => {
         if (typebtn === "button") {
-          return onClick();
+           onClick(event);
         }
         return;
       }}
       disabled={disabled}
-      type={typebtn === "submit" ? typebtn : "button"}
+      type={typebtn === "submit" ? 'submit' : "button"}
       className={`
         relative
         disabled:opacity-70

@@ -18,16 +18,15 @@ const ListingCard = ({
   const router = useRouter();
   const { getByValue } = useCountries();
   const location = getByValue(data.locationValue);
-  const handleCancel = useCallback(
-    (e) => {
-      e.stopPropagation();
-      if (disabled) {
-        return;
-      }
-      onAction?.(actionId);
-    },
-    [actionId, onAction, disabled]
-  );
+  const handleCancel = (event) => {
+    event.stopPropagation();
+    if (disabled) {
+      return;
+    }
+    onAction?.(actionId);
+  };
+  //   [actionId, onAction, disabled]
+  // );
   const price = useMemo(() => {
     if (reservation) {
       return reservation.totalPrice;
@@ -42,7 +41,7 @@ const ListingCard = ({
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
 
-    return `${format(start, "PPP")} - ${format(end, "PPP")}`;
+    return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
   return (
     <div
@@ -70,7 +69,8 @@ const ListingCard = ({
             "
             src={data.imageSrc}
             alt="Listing"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw" 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+            priority
           />
           <div
             className="
@@ -79,8 +79,8 @@ const ListingCard = ({
             right-3
           "
           >
-        <HeartButton listingId={data.id} currentUser={currentUser} />
-        </div>
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
         </div>
         <div className="font-semibold text-lg">
           {location?.region}, {location?.label}

@@ -44,10 +44,10 @@ const HeartButton = ({ listingId, currentUser }) => {
     }
   };
   useEffect(() => {
-    if (currentUser.favoriteIds.includes(listingId)) {
+    if (currentUser && currentUser.favoriteIds.includes(listingId)) {
       setIsFavorited(true);
     }
-  }, []);
+  }, [currentUser]);
   return (
     <div
       onClick={clickHandler}

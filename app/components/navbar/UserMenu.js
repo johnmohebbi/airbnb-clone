@@ -7,10 +7,11 @@ import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRentModal from "@/app/hooks/useRentModal";
+import { useRouter } from "next/navigation";
 
 export default function UserMenu({ currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const router = useRouter()
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
   const loginModal = useLoginModal();
@@ -103,9 +104,9 @@ export default function UserMenu({ currentUser }) {
                   {currentUser?.name}
                 </h3>
                 <div className="bg-neutral-800/50 h-[1px] my-1 "></div>
-                <MenuItem onClick={() => {}} label={"my trips"} />
+                <MenuItem onClick={() => router.push('/trips')} label={"my trips"} />
                 <MenuItem onClick={() => {}} label={"my favorites"} />
-                <MenuItem onClick={() => {}} label={"my reservations"} />
+                <MenuItem onClick={() => router.push('/reservations')} label={"my reservations"} />
                 <MenuItem onClick={() => {}} label={"my properties "} />
                 <MenuItem onClick={rentModal.onOpen} label={"my airbnb home "} />
                 <div className="bg-neutral-800/50 h-[1px] my-1"></div>

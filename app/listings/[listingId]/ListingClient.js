@@ -32,13 +32,12 @@ const ListingClient = ({ listing, currentUser, reservations = [] }) => {
     });
     return dates;
   }, [reservations]);
-
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState(initialDateRange);
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
-      return loginModal.onOpen();
+      return loginModel.onOpen();
     }
     setIsLoading(true);
     axios
@@ -50,8 +49,8 @@ const ListingClient = ({ listing, currentUser, reservations = [] }) => {
       })
       .then(() => {
         toast.success("Listing reserved.");
-        setDateRange(initialDateRange);
         router.push("/trips");
+        setDateRange(initialDateRange);
       })
       .catch(() => {
         toast.error("Something went wrong.");

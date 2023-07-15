@@ -1,10 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import React from "react";
 
 const getReservations = async (params) => {
   try {
-    const query = {};
+    const prisma = new PrismaClient();
     const { listingId, userId, authorId } = params;
+    
+    let query = {};
+
     if (listingId) {
       query.listingId = listingId;
     }
@@ -14,8 +16,9 @@ const getReservations = async (params) => {
     }
 
     if (authorId) {
-      query.listing = { userId: authorId };
+      query = { userId: authorId };
     }
+
     const reservations = await prisma.reservation.findMany({
       where: query,
       include: {
@@ -25,6 +28,7 @@ const getReservations = async (params) => {
         createdAt: "desc",
       },
     });
+    
     const safeReservations = reservations.map((reservation) => ({
       ...reservation,
       createdAt: reservation.createdAt.toISOString(),
@@ -35,6 +39,8 @@ const getReservations = async (params) => {
         createdAt: reservation.listing.createdAt.toISOString(),
       },
     }));
+    
+    console.log("get=>", safeReservations);
     return safeReservations;
   } catch (error) {
     throw new Error(error);
