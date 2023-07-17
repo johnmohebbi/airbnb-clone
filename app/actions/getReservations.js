@@ -3,8 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const getReservations = async (params) => {
   try {
     const prisma = new PrismaClient();
-    const { listingId, userId, authorId } = params;
-    
+    const { listingId, authorId, userId } = params;
     let query = {};
 
     if (listingId) {
@@ -16,7 +15,7 @@ const getReservations = async (params) => {
     }
 
     if (authorId) {
-      query = { userId: authorId };
+      query.listing = { userId: authorId };
     }
 
     const reservations = await prisma.reservation.findMany({
@@ -28,7 +27,7 @@ const getReservations = async (params) => {
         createdAt: "desc",
       },
     });
-    
+
     const safeReservations = reservations.map((reservation) => ({
       ...reservation,
       createdAt: reservation.createdAt.toISOString(),
@@ -39,8 +38,7 @@ const getReservations = async (params) => {
         createdAt: reservation.listing.createdAt.toISOString(),
       },
     }));
-    
-    console.log("get=>", safeReservations);
+
     return safeReservations;
   } catch (error) {
     throw new Error(error);

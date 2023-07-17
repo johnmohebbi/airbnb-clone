@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 export default function UserMenu({ currentUser }) {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
   const loginModal = useLoginModal();
@@ -104,18 +104,62 @@ export default function UserMenu({ currentUser }) {
                   {currentUser?.name}
                 </h3>
                 <div className="bg-neutral-800/50 h-[1px] my-1 "></div>
-                <MenuItem onClick={() => router.push('/trips')} label={"my trips"} />
-                <MenuItem onClick={() => {}} label={"my favorites"} />
-                <MenuItem onClick={() => router.push('/reservations')} label={"my reservations"} />
-                <MenuItem onClick={() => {}} label={"my properties "} />
-                <MenuItem onClick={rentModal.onOpen} label={"my airbnb home "} />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/trips");
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"my trips"}
+                />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/favorites");
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"my favorites"}
+                />
+                <MenuItem
+                  onClick={() => {
+                    router.push("/reservations");
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"my reservations"}
+                />
+                <MenuItem
+                  onClick={() => {
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"my properties "}
+                />
+                <MenuItem
+                  onClick={rentModal.onOpen}
+                  label={"my airbnb home "}
+                />
                 <div className="bg-neutral-800/50 h-[1px] my-1"></div>
-                <MenuItem onClick={() => signOut()} label={"Logout "} />
+                <MenuItem
+                  onClick={() => {
+                    signOut();
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"Logout "}
+                />
               </>
             ) : (
               <>
-                <MenuItem onClick={registerModal.onOpen} label={"sign up"} />
-                <MenuItem onClick={loginModal.onOpen} label={"login"} />
+                <MenuItem
+                  onClick={() => {
+                    registerModal.onOpen();
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"sign up"}
+                />
+                <MenuItem
+                  onClick={() => {
+                    loginModal.onOpen();
+                    setIsOpen((value) => !value);
+                  }}
+                  label={"login"}
+                />
               </>
             )}
           </div>

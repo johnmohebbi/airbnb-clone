@@ -42,7 +42,6 @@ const LoginModal = () => {
       redirect: false,
     })
       .then((response) => {
-        console.log(response);
         if (!response.error) {
           setIsLoading(false);
           toast.success("Logged in");
@@ -103,7 +102,8 @@ const LoginModal = () => {
         icon={FcGoogle}
         onClick={signIn}
         typebtn={"button"}
-      />
+      /> */}
+      {/* 
       <Button
         outline
         label={"Continue with Github"}

@@ -36,9 +36,9 @@ const RegisterModal = () => {
     axios
       .post("/api/register", data)
       .then((response) => {
-        console.log(response);
         toast.success("success");
         registerModal.onClose();
+        loginModal.onOpen();
         registerModal.ResetregisterInputsValue();
       })
       .catch((error) => {
@@ -95,10 +95,10 @@ const RegisterModal = () => {
         onClick={() => signIn("google")}
         typebtn={"button"}
       />
-      {/* 
-      <Button
+
+      {/* <Button
         outline
-        label={"Continue with Github"}
+        label={"Continue with google"}
         icon={AiFillGithub}
         onClick={() => signIn()}
         typebtn={"button"}
