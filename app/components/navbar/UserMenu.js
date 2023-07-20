@@ -127,6 +127,7 @@ export default function UserMenu({ currentUser }) {
                 />
                 <MenuItem
                   onClick={() => {
+                    router.push("/properties");
                     setIsOpen((value) => !value);
                   }}
                   label={"my properties "}
