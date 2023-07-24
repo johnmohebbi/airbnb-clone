@@ -37,16 +37,16 @@ const Counter = ({ onChange, title, subtitle, value }) => {
             "
           onClick={onReduce}
         >
-            <AiOutlineMinus />
+          <AiOutlineMinus />
         </button>
-        <div 
+        <div
           className="
             font-light 
             text-xl 
             text-neutral-600
           "
         >
-            {value}
+          {value}
         </div>
         <button
           className="
@@ -65,7 +65,7 @@ const Counter = ({ onChange, title, subtitle, value }) => {
             "
           onClick={onAdd}
         >
-            <AiOutlinePlus />
+          <AiOutlinePlus />
         </button>
       </div>
     </div>
