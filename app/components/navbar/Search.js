@@ -62,7 +62,7 @@ export default function Search() {
       "
         >
           <div className="hidden sm:block">Add Guests</div>
-          <div className="p-2 bg-rose-500 rounded-full text-white">
+          <div className="p-2 bg-[#FF5A5F] rounded-full text-white">
             <BiSearch size={16} />
           </div>
         </div>

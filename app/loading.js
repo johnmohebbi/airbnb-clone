@@ -1,9 +1,12 @@
-const Loading = () => {
-  return (
-    <div className="mt-96">
-      Loading
-    </div>
-  )
-}
+import React from "react";
+import Loader from "./components/Loader";
 
-export default Loading
+const loading = () => {
+  return (
+    <>
+      <Loader />
+    </>
+  );
+};
+
+export default loading;

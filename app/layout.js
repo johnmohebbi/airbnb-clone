@@ -10,6 +10,8 @@ import "./globals.css";
 import LoginModal from "./components/modals/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import SearchModal from "./components/modals/SearchModal";
+import { Suspense } from "react";
+import Loader from "./components/Loader";
 
 export const metadata = {
   title: "Airbnb",
@@ -24,15 +26,13 @@ export default async function RootLayout({ children }) {
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={font.className}>
-        <ToasterProvider />
-        <SearchModal />
-        <RentModal />
-        <LoginModal />
-        <RegisterModal />
-        <Navvbar currentUser={currentUser} />
-        <section className="pt-28 pb-20">
-        {children}
-        </section>
+          <ToasterProvider />
+          <SearchModal />
+          <RentModal />
+          <LoginModal />
+          <RegisterModal />
+          <Navvbar currentUser={currentUser} />
+          <section className="pt-28 pb-20 ">{children}</section>
       </body>
     </html>
   );
