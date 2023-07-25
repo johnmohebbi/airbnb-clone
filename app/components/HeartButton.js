@@ -1,6 +1,6 @@
 "use client";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import useFavorite from "../hooks/useFavorite";
+// import useFavorite from "../hooks/useFavorite";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -47,7 +47,7 @@ const HeartButton = ({ listingId, currentUser }) => {
     if (currentUser && currentUser.favoriteIds.includes(listingId)) {
       setIsFavorited(true);
     }
-  }, [currentUser]);
+  }, [currentUser,listingId]);
   return (
     <div
       onClick={clickHandler}
