@@ -10,8 +10,6 @@ import "./globals.css";
 import LoginModal from "./components/modals/LoginModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import SearchModal from "./components/modals/SearchModal";
-import { Suspense } from "react";
-import Loader from "./components/Loader";
 
 export const metadata = {
   title: "Airbnb",
